@@ -17,3 +17,7 @@ Integration of a collection of Klipper/Voron software including:
   led_effects
 
   Calibration tools
+
+To install run:
+
+wget -O - https://raw.githubusercontent.com/mrstone14/voronCFG/main/install.sh | bash
