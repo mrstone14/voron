@@ -2,9 +2,9 @@
 
 In Klipper, when two identical `[section]` are defined, it's the last one in the include order that will take over. Additionally, any missing values are filled in by the last entry. This mechanism is called an "override".
 
-To keeps Klippain files read-only and compatible with Moonraker's update manager, you will need to use this mechansim extensively. There is default values included in every Klippain files, but if you want to change them, you can add some overrides without having to dig and modify all the files in Klippain folders.
+To keeps voronCFG files read-only and compatible with Moonraker's update manager, you will need to use this mechansim extensively. There is default values included in every voronCFG files, but if you want to change them, you can add some overrides without having to dig and modify all the files in voronCFG folders.
 
-Use overrides to tweak machine dimensions, invert motor directions, change axis limits, currents, sensors type, or anything you feel the need to change. You can even override a full macro to replace it completely by your own or add new features to Klippain on your side. This is a very powerful feature!
+Use overrides to tweak machine dimensions, invert motor directions, change axis limits, currents, sensors type, or anything you feel the need to change. You can even override a full macro to replace it completely by your own or add new features to voronCFG on your side. This is a very powerful feature!
 
   > **Note**
   >
@@ -17,12 +17,12 @@ Since my defaults aim to be as generic as possible, you won't need many override
 
 For example, **pay special attention to axis limits** in the `[stepper_...]` sections, run current, etc. Verify thermistor types in `[extruder]` and `[heated_bed]` sections. If using a multi-MCU configuration, you'll need to override any section where pins are connected to the secondary or toolhead boards to specify it. Finally, use overrides if you want to change motor direction or add a pull-up/down (using `!`, `^`, and `~`).
 
-Additionally, if you want to add a new macro to Klippain or even replace an existing one to adapt it to your use case, you can do it the same way!
+Additionally, if you want to add a new macro to voronCFG or even replace an existing one to adapt it to your use case, you can do it the same way!
 
 
 ## How to write an override
 
-The following examples should help you add all the overrides you need to customize Klippain and make it work correctly with your printer!
+The following examples should help you add all the overrides you need to customize voronCFG and make it work correctly with your printer!
 
 Let's say you want to change the motor current for the X-axis. You'll need to override the `[tmc2209 stepper_x]` section because that's where the current is defined. To do this, simply add the following to your `overrides.cfg` file:
 ```
@@ -42,7 +42,7 @@ Changing a thermistor type (like for the bed), can be done this way:
 sensor_type: ...
 ```
 
-You can even redefine a full macro! For example if the default Klippain prime line is not adapted to your needs, just override the macro like that:
+You can even redefine a full macro! For example if the default voronCFG prime line is not adapted to your needs, just override the macro like that:
 ```
 [gcode_macro _MODULE_PRIMELINE]
 gcode:

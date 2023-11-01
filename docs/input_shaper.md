@@ -116,7 +116,7 @@ In the following examples, the graphs are random graphs found online or sent to 
 
 
 <details>
-<summary>3. Klippain vibrations graphs</summary><br />
+<summary>3. voronCFG vibrations graphs</summary><br />
 
 More details to be added later in this section...
 

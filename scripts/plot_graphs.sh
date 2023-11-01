@@ -3,7 +3,8 @@
 ###### GRAPH PLOTTING SCRIPT ######
 ###################################
 # Written by Frix_x#0161 #
-# @version: 1.6
+# Updated by mrstone14.1
+# @version: 1.6.1
 
 # CHANGELOG:
 #   v1.6: - updated the handling of shaper graph files to be able to optionnaly account for added positions in the filenames and remove them
@@ -20,7 +21,7 @@
 #      Note: If using Windows to do the copy/paste, be careful with the line endings for this file: LF (or \n) is mandatory !!! No \r should be
 #            present in the file as it could lead to some errors like "\r : unknown command" when running the script. If you're not confident
 #            regarding your text editor behavior, the best way is to directly download the file on the pi by using for example wget:
-#            type 'wget -P ~/printer_data/config/scripts https://raw.githubusercontent.com/Frix-x/klippain/main/scripts/plot_graphs.sh'
+#            type 'wget -P ~/printer_data/config/scripts https://raw.githubusercontent.com/mrstone14/voronCFG/main/scripts/plot_graphs.sh'
 #   2. Make it executable using SSH: type 'chmod +x ~/printer_data/config/scripts/plot_graphs.sh' (adjust the path if needed).
 #   3. Be sure to have the gcode_shell_command.py Klipper extension installed (easiest way to install it is to use KIAUH in the Advanced section)
 #   4. Create a gcode_shell_command to be able to start it from a macro (see my shell_commands.cfg file)

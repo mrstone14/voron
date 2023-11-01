@@ -4,7 +4,8 @@
 ###### BASIC SYSTEM INFO SCRIPT ######
 ######################################
 # Written by Frix_x#0161 #
-# @version: 1.0
+# Updated by mrstone14
+# @version: 1.0.1
 
 # CHANGELOG:
 #   v1.0: first version of the script to get some system info printed in the klippy.log
@@ -89,7 +90,7 @@ def print_system_info():
 
 
     date_time = future_date_time.result()
-    print(f"Klippain started ({date_time})")
+    print(f"voronCFG started ({date_time})")
 
     sysname, release, machine = future_os_kernel.result()
     print(f"Operating System: {sysname} - {release}")
