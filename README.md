@@ -4,20 +4,17 @@ This set of configuration files was created by *mrstone14* to provide a streamli
 
 Main features of this repo include:
 
-Custom printer.cfg file
-
-Folder structure for hardware, software, macros and similar configuration files
-
-Integration of a collection of Klipper/Voron software including:
-
-  ERCF / Happy Hare
-
-  Pika Filament Buffer
-
-  led_effects
-
-  Calibration tools
+* Custom printer.cfg file
+* Folder structure for hardware, software, macros and similar configuration files
+* Integration of a collection of Klipper/Voron software including:
+  * ERCF / Happy Hare
+  * Pika Filament Buffer
+  * led_effects
+  * Calibration tools
 
 To install run:
 
+```bash
 wget -O - https://raw.githubusercontent.com/mrstone14/voronCFG/main/install.sh | bash
+```
+
