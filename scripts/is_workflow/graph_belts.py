@@ -607,9 +607,9 @@ def belts_calibration(lognames, klipperdir="~/klipper", max_freq=200.):
     fig.subplots_adjust(top=0.89)
     
     # Adding a small voronCFG logo to the top left corner of the figure
-    ax_logo = fig.add_axes([0.001, 0.899, 0.1, 0.1], anchor='NW', zorder=-1)
-    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voronCFG.png')))
-    ax_logo.axis('off')
+    #ax_logo = fig.add_axes([0.001, 0.899, 0.1, 0.1], anchor='NW', zorder=-1)
+    #ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voronCFG.png')))
+    #ax_logo.axis('off')
     
     return fig
 
