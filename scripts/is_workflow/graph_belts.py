@@ -42,7 +42,7 @@ DC_MAX_UNPAIRED_PEAKS_ALLOWED = 4
 # Define the SignalData namedtuple
 SignalData = namedtuple('CalibrationData', ['freqs', 'psd', 'peaks', 'paired_peaks', 'unpaired_peaks'])
 
-KLIPPAIN_COLORS = {
+voronCFG_COLORS = {
     "purple": "#70088C",
     "orange": "#FF8D32",
     "dark_purple": "#150140",
@@ -374,8 +374,8 @@ def plot_compare_frequency(ax, lognames, signal1, signal2, max_freq):
         print("Warning: belts doesn't seem to have the correct name A and B (extracted from the filename.csv)")
 
     # Plot the two belts PSD signals
-    ax.plot(signal1.freqs, signal1.psd, label="Belt " + signal1_belt, color=KLIPPAIN_COLORS['purple'])
-    ax.plot(signal2.freqs, signal2.psd, label="Belt " + signal2_belt, color=KLIPPAIN_COLORS['orange'])
+    ax.plot(signal1.freqs, signal1.psd, label="Belt " + signal1_belt, color=voronCFG_COLORS['purple'])
+    ax.plot(signal2.freqs, signal2.psd, label="Belt " + signal2_belt, color=voronCFG_COLORS['orange'])
 
     # Trace the "relax region" (also used as a threshold to filter and detect the peaks)
     psd_lowest_max = min(signal1.psd.max(), signal2.psd.max())
@@ -442,7 +442,7 @@ def plot_compare_frequency(ax, lognames, signal1, signal2, max_freq):
     ax.grid(which='minor', color='lightgrey')
     fontP = matplotlib.font_manager.FontProperties()
     fontP.set_size('small')
-    ax.set_title('Belts Frequency Profiles (estimated similarity: {:.1f}%)'.format(similarity_factor), fontsize=14, color=KLIPPAIN_COLORS['dark_orange'], weight='bold')
+    ax.set_title('Belts Frequency Profiles (estimated similarity: {:.1f}%)'.format(similarity_factor), fontsize=14, color=voronCFG_COLORS['dark_orange'], weight='bold')
 
     # Print the table of offsets ontop of the graph below the original legend (upper right)
     if len(offsets_table_data) > 0:
@@ -471,7 +471,7 @@ def plot_difference_spectrogram(ax, data1, data2, signal1, signal2, similarity_f
     # Be careful, this value is highly opinionated and is pretty experimental!
     mhi, textual_mhi = compute_mhi(combined_data, similarity_factor, len(signal1.unpaired_peaks) + len(signal2.unpaired_peaks))
     print(f"[experimental] Mechanical Health Indicator: {textual_mhi.lower()} ({mhi:.1f}%)")
-    ax.set_title(f"Differential Spectrogram", fontsize=14, color=KLIPPAIN_COLORS['dark_orange'], weight='bold')
+    ax.set_title(f"Differential Spectrogram", fontsize=14, color=voronCFG_COLORS['dark_orange'], weight='bold')
     ax.plot([], [], ' ', label=f'{textual_mhi} (experimental)')
     
     # Draw the differential spectrogram with a specific custom norm to get white or light orange zero values and red for max values
@@ -511,11 +511,11 @@ def plot_difference_spectrogram(ax, data1, data2, signal1, signal2, similarity_f
         label = ALPHABET[idx]
         x_min = min(peak1[1], peak2[1])
         x_max = max(peak1[1], peak2[1])
-        ax.axvline(x_min, color=KLIPPAIN_COLORS['purple'], linestyle='dotted', linewidth=1.5)
-        ax.axvline(x_max, color=KLIPPAIN_COLORS['purple'], linestyle='dotted', linewidth=1.5)
-        ax.fill_between([x_min, x_max], 0, np.max(combined_data), color=KLIPPAIN_COLORS['purple'], alpha=0.3)
+        ax.axvline(x_min, color=voronCFG_COLORS['purple'], linestyle='dotted', linewidth=1.5)
+        ax.axvline(x_max, color=voronCFG_COLORS['purple'], linestyle='dotted', linewidth=1.5)
+        ax.fill_between([x_min, x_max], 0, np.max(combined_data), color=voronCFG_COLORS['purple'], alpha=0.3)
         ax.annotate(f"Peaks {label}", (x_min, t[-1]*0.05),
-                textcoords="data", color=KLIPPAIN_COLORS['purple'], rotation=90, fontsize=10,
+                textcoords="data", color=voronCFG_COLORS['purple'], rotation=90, fontsize=10,
                 verticalalignment='bottom', horizontalalignment='right')
 
     return
@@ -588,7 +588,7 @@ def belts_calibration(lognames, klipperdir="~/klipper", max_freq=200.):
 
     # Add title
     title_line1 = "RELATIVE BELT CALIBRATION TOOL"
-    fig.text(0.12, 0.965, title_line1, ha='left', va='bottom', fontsize=20, color=KLIPPAIN_COLORS['purple'], weight='bold')
+    fig.text(0.12, 0.965, title_line1, ha='left', va='bottom', fontsize=20, color=voronCFG_COLORS['purple'], weight='bold')
     try:
         filename = lognames[0].split('/')[-1]
         dt = datetime.strptime(f"{filename.split('_')[1]} {filename.split('_')[2]}", "%Y%m%d %H%M%S")
@@ -596,7 +596,7 @@ def belts_calibration(lognames, klipperdir="~/klipper", max_freq=200.):
     except:
         print("Warning: CSV filenames look to be different than expected (%s , %s)" % (lognames[0], lognames[1]))
         title_line2 = lognames[0].split('/')[-1] + " / " +  lognames[1].split('/')[-1]
-    fig.text(0.12, 0.957, title_line2, ha='left', va='top', fontsize=16, color=KLIPPAIN_COLORS['dark_purple'])
+    fig.text(0.12, 0.957, title_line2, ha='left', va='top', fontsize=16, color=voronCFG_COLORS['dark_purple'])
 
     # Plot the graphs
     similarity_factor, _ = plot_compare_frequency(ax1, lognames, signal1, signal2, max_freq)
@@ -606,9 +606,9 @@ def belts_calibration(lognames, klipperdir="~/klipper", max_freq=200.):
     fig.tight_layout()
     fig.subplots_adjust(top=0.89)
     
-    # Adding a small Klippain logo to the top left corner of the figure
+    # Adding a small voronCFG logo to the top left corner of the figure
     ax_logo = fig.add_axes([0.001, 0.899, 0.1, 0.1], anchor='NW', zorder=-1)
-    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'klippain.png')))
+    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voronCFG.png')))
     ax_logo.axis('off')
     
     return fig

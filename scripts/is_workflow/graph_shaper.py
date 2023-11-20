@@ -42,7 +42,7 @@ PEAKS_EFFECT_THRESHOLD = 0.12
 SPECTROGRAM_LOW_PERCENTILE_FILTER = 5
 MAX_SMOOTHING = 0.1
 
-KLIPPAIN_COLORS = {
+voronCFG_COLORS = {
     "purple": "#70088C",
     "dark_purple": "#150140",
     "dark_orange": "#F24130"
@@ -263,7 +263,7 @@ def plot_freq_response_with_damping(ax, calibration_data, shapers, performance_s
 
 
     # Add the main resonant frequency and damping ratio of the axis to the graph title
-    ax.set_title("Axis Frequency Profile (ω0=%.1fHz, ζ=%.3f)" % (fr, zeta), fontsize=14, color=KLIPPAIN_COLORS['dark_orange'], weight='bold')
+    ax.set_title("Axis Frequency Profile (ω0=%.1fHz, ζ=%.3f)" % (fr, zeta), fontsize=14, color=voronCFG_COLORS['dark_orange'], weight='bold')
     ax.legend(loc='upper left', prop=fontP)
     ax2.legend(loc='upper right', prop=fontP)
 
@@ -281,7 +281,7 @@ def plot_spectrogram(ax, data, peaks, max_freq):
     # So we need to filter out the lower part of the data (ie. find the proper vmin for LogNorm)
     vmin_value = np.percentile(pdata, SPECTROGRAM_LOW_PERCENTILE_FILTER)
 
-    ax.set_title("Time-Frequency Spectrogram", fontsize=14, color=KLIPPAIN_COLORS['dark_orange'], weight='bold')
+    ax.set_title("Time-Frequency Spectrogram", fontsize=14, color=voronCFG_COLORS['dark_orange'], weight='bold')
     ax.pcolormesh(bins, t, pdata.T, norm=matplotlib.colors.LogNorm(vmin=vmin_value),
                   cmap='inferno', shading='gouraud')
 
@@ -341,7 +341,7 @@ def shaper_calibration(lognames, klipperdir="~/klipper", max_smoothing=None, max
     
     # Add title
     title_line1 = "INPUT SHAPER CALIBRATION TOOL"
-    fig.text(0.12, 0.965, title_line1, ha='left', va='bottom', fontsize=20, color=KLIPPAIN_COLORS['purple'], weight='bold')
+    fig.text(0.12, 0.965, title_line1, ha='left', va='bottom', fontsize=20, color=voronCFG_COLORS['purple'], weight='bold')
     try:
         filename_parts = (lognames[0].split('/')[-1]).split('_')
         dt = datetime.strptime(f"{filename_parts[1]} {filename_parts[2]}", "%Y%m%d %H%M%S")
@@ -349,7 +349,7 @@ def shaper_calibration(lognames, klipperdir="~/klipper", max_smoothing=None, max
     except:
         print("Warning: CSV filename look to be different than expected (%s)" % (lognames[0]))
         title_line2 = lognames[0].split('/')[-1]
-    fig.text(0.12, 0.957, title_line2, ha='left', va='top', fontsize=16, color=KLIPPAIN_COLORS['dark_purple'])
+    fig.text(0.12, 0.957, title_line2, ha='left', va='top', fontsize=16, color=voronCFG_COLORS['dark_purple'])
 
     # Plot the graphs
     peaks = plot_freq_response_with_damping(ax1, calibration_data, shapers, performance_shaper, fr, zeta, max_freq)
@@ -359,9 +359,9 @@ def shaper_calibration(lognames, klipperdir="~/klipper", max_smoothing=None, max
     fig.tight_layout()
     fig.subplots_adjust(top=0.89)
 
-    # Adding a small Klippain logo to the top left corner of the figure
+    # Adding a small voronCFG logo to the top left corner of the figure
     ax_logo = fig.add_axes([0.001, 0.899, 0.1, 0.1], anchor='NW', zorder=-1)
-    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'klippain.png')))
+    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voronCFG.png')))
     ax_logo.axis('off')
 
     return fig

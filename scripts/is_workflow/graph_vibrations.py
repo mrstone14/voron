@@ -35,7 +35,7 @@ PEAKS_DETECTION_THRESHOLD = 0.05
 PEAKS_RELATIVE_HEIGHT_THRESHOLD = 0.04
 VALLEY_DETECTION_THRESHOLD = 0.1 # Lower is more sensitive
 
-KLIPPAIN_COLORS = {
+voronCFG_COLORS = {
     "purple": "#70088C",
     "dark_purple": "#150140",
     "dark_orange": "#F24130"
@@ -232,7 +232,7 @@ def resample_signal(speeds, power_total, new_spacing=0.1):
 def plot_total_power(ax, speeds, power_total):
     resampled_speeds, resampled_power_total = resample_signal(speeds, power_total[0])
 
-    ax.set_title("Vibrations decomposition", fontsize=14, color=KLIPPAIN_COLORS['dark_orange'], weight='bold')
+    ax.set_title("Vibrations decomposition", fontsize=14, color=voronCFG_COLORS['dark_orange'], weight='bold')
     ax.set_xlabel('Speed (mm/s)')
     ax.set_ylabel('Energy')
     
@@ -293,7 +293,7 @@ def plot_spectrogram(ax, speeds, freqs, power_spectral_densities, peaks, max_fre
         for j in range(len(freqs)):
             spectrum[j, i] = power_spectral_densities[i][0][j]
 
-    ax.set_title("Vibrations spectrogram", fontsize=14, color=KLIPPAIN_COLORS['dark_orange'], weight='bold')
+    ax.set_title("Vibrations spectrogram", fontsize=14, color=voronCFG_COLORS['dark_orange'], weight='bold')
     ax.pcolormesh(speeds, freqs, spectrum, norm=matplotlib.colors.LogNorm(),
             cmap='inferno', shading='gouraud')
 
@@ -381,7 +381,7 @@ def vibrations_calibration(lognames, klipperdir="~/klipper", axisname=None, max_
     ax2 = fig.add_subplot(gs[1])
 
     title_line1 = "VIBRATIONS MEASUREMENT TOOL"
-    fig.text(0.12, 0.965, title_line1, ha='left', va='bottom', fontsize=20, color=KLIPPAIN_COLORS['purple'], weight='bold')
+    fig.text(0.12, 0.965, title_line1, ha='left', va='bottom', fontsize=20, color=voronCFG_COLORS['purple'], weight='bold')
     try:
         filename_parts = (lognames[0].split('/')[-1]).split('_')
         dt = datetime.strptime(f"{filename_parts[1]} {filename_parts[2].split('-')[0]}", "%Y%m%d %H%M%S")
@@ -389,7 +389,7 @@ def vibrations_calibration(lognames, klipperdir="~/klipper", axisname=None, max_
     except:
         print("Warning: CSV filename look to be different than expected (%s)" % (lognames[0]))
         title_line2 = lognames[0].split('/')[-1]
-    fig.text(0.12, 0.957, title_line2, ha='left', va='top', fontsize=16, color=KLIPPAIN_COLORS['dark_purple'])
+    fig.text(0.12, 0.957, title_line2, ha='left', va='top', fontsize=16, color=voronCFG_COLORS['dark_purple'])
 
     # Remove speeds duplicates and graph the processed datas
     speeds = list(OrderedDict((x, True) for x in speeds).keys())
@@ -401,9 +401,9 @@ def vibrations_calibration(lognames, klipperdir="~/klipper", axisname=None, max_
     fig.tight_layout()
     fig.subplots_adjust(top=0.89)
 
-    # Adding a small Klippain logo to the top left corner of the figure
+    # Adding a small voronCFG logo to the top left corner of the figure
     ax_logo = fig.add_axes([0.001, 0.899, 0.1, 0.1], anchor='NW', zorder=-1)
-    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'klippain.png')))
+    ax_logo.imshow(matplotlib.pyplot.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'voronCFG.png')))
     ax_logo.axis('off')
 
     return fig

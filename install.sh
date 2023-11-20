@@ -129,6 +129,7 @@ function install_config {
 
     # CHMOD the scripts to be sure they are all executables (Git should keep the modes on files but it's to be sure)
     chmod +x ${MRSTONE_CONFIG_PATH}/install.sh
+    chmod +x ${MRSTONE_CONFIG_PATH}/scripts/system_info.py
     for file in is_workflow.py graph_vibrations.py graph_shaper.py graph_belts.py; do
         chmod +x ${MRSTONE_CONFIG_PATH}/scripts/is_workflow/$file
     done
