@@ -130,7 +130,7 @@ function install_config {
     # CHMOD the scripts to be sure they are all executables (Git should keep the modes on files but it's to be sure)
     chmod +x ${MRSTONE_CONFIG_PATH}/install.sh
     for file in graph_vibrations.py plot_graphs.sh; do
-        chmod +x ${MRSTONE_CONFIG_PATH}/scripts/$file
+        chmod +x ${MRSTONE_CONFIG_PATH}/scripts/is_workflow/$file
     done
 
     # Symlink the gcode_shell_command.py file in the correct Klipper folder (erased to always get the last version)
